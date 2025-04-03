@@ -20,7 +20,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng build --base-href ./ && electron .",
-    "build": "ng build --prod --base-href ./",
+    "build": "ng build --production --base-href ./",
     "test": "ng test",
     "electron": "electron .",
     "package-win-x64": "ng build --configuration production --base-href ./ && electron-builder --win --x64",
