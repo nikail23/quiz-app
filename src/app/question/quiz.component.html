@@ -1,0 +1,42 @@
+<div *ngIf="!quizCompleted" class="quiz-container">
+  <h3>{{ currentQuestion.text }}</h3>
+
+  <div class="hint">
+    {{
+      currentQuestion.type === "single"
+        ? "Выберите один правильный ответ"
+        : "Выберете несколько правильных ответов"
+    }}
+  </div>
+
+  <div
+    *ngFor="let option of currentQuestion.options; let i = index"
+    class="option"
+    [class.show-correct]="showAnswers"
+    [class.correct]="showAnswers && option.correct"
+    [class.incorrect]="showAnswers && !option.correct && isSelected(i)"
+  >
+    <label>
+      <input
+        type="checkbox"
+        [checked]="isSelected(i)"
+        (change)="toggleOption(i)"
+        [disabled]="showAnswers"
+      />
+      <span class="custom-checkbox"></span>
+      {{ option.text }}
+    </label>
+  </div>
+
+  <button (click)="handleButtonClick()" [disabled]="!hasSelectedOptions()">
+    {{ showAnswers ? "Следующий вопрос" : "Проверить ответ" }}
+  </button>
+</div>
+
+<div *ngIf="quizCompleted" class="results-container">
+  <h2>
+    Тест завершен! Правильных ответов: {{ correctAnswersCount }} из
+    {{ questions.length }}
+  </h2>
+  <!-- Здесь можно добавить детальные результаты -->
+</div>

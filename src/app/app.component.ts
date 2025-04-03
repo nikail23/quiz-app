@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { QuizComponent } from './question/quiz.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [QuizComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'quiz-app';
+  onQuizCompleted(result: any) {
+    console.log('Результат:', result);
+    alert(`Вы набрали ${result.score} из ${result.totalQuestions} баллов!`);
+  }
 }
