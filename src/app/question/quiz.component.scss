@@ -58,25 +58,10 @@
   }
 }
 
-button {
+.buttons-toolbar {
   margin-top: 24px;
-  padding: 12px 24px;
-  background-color: #1976d2;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #1565c0;
-  }
-
-  &:disabled {
-    background-color: #bdbdbd;
-    cursor: not-allowed;
-  }
+  display: flex;
+  gap: 10px;
 }
 
 .results-container {

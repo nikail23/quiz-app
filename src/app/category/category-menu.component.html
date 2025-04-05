@@ -1,0 +1,12 @@
+<div class="category-menu">
+  <h2>Выберите раздел</h2>
+  <div class="category-list">
+    <button
+      *ngFor="let category of categories"
+      (click)="selectCategory(category.value)"
+      class="category-btn"
+    >
+      {{ category.name }}
+    </button>
+  </div>
+</div>

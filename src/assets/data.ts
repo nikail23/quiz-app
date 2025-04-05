@@ -1,6 +1,6 @@
-import { Question } from '../app/question/question.model';
+import { Question } from '../app/model/question.model';
 
-export const QUIZ_DATA: Question[] = [
+export const MANAGEMENT_DATA: Question[] = [
   {
     id: 171,
     text: 'Менеджмент – это:',
@@ -1466,3 +1466,13 @@ export const QUIZ_DATA: Question[] = [
       'Система здравоохранения имеет стратегическое, тактическое и оперативное управление.',
   },
 ];
+
+export enum Category {
+  MANAGEMENT = 'MANAGEMENT',
+  ALL = 'ALL',
+}
+
+export const QUIZ_DATA = {
+  [Category.MANAGEMENT]: [...MANAGEMENT_DATA],
+  [Category.ALL]: [...MANAGEMENT_DATA],
+};

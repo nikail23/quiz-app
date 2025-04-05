@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { QuizService } from './quiz.service';
-import { Question } from './question.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,34 +8,32 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./quiz.component.scss'],
   imports: [CommonModule],
 })
-export class QuizComponent implements OnInit {
-  questions: Question[] = [];
-  currentQuestionIndex = 0;
-  selectedOptions: number[] = [];
-  showAnswers = false;
-  correctAnswersCount = 0;
-  quizCompleted = false;
+export class QuizComponent {
+  public questions = this._quizService.questions;
+  public selectedOptions: number[] = [];
+  public showAnswers = false;
+  public correctAnswersCount = 0;
+  public quizCompleted = false;
 
-  constructor(private quizService: QuizService) {}
+  private _currentQuestionIndex = signal(0);
+  private _prevCorrectAnwersCount = 0;
 
-  ngOnInit() {
-    this.questions = this.quizService.getRandomizedQuestions();
-  }
+  constructor(private _quizService: QuizService) {}
 
-  get currentQuestion(): Question {
-    return this.questions[this.currentQuestionIndex];
-  }
+  public currentQuestion = computed(
+    () => this.questions()[this._currentQuestionIndex()]
+  );
 
-  getAnswerHintText(): string {
-    return this.currentQuestion.type === 'single'
+  public answerHintText = computed(() =>
+    this.currentQuestion().type === 'single'
       ? 'Выберите один правильный ответ'
-      : 'Выберете несколько правильных ответов';
-  }
+      : 'Выберете несколько правильных ответов'
+  );
 
-  toggleOption(index: number): void {
+  public toggleOption(index: number): void {
     if (this.showAnswers) return;
 
-    if (this.currentQuestion.type === 'single') {
+    if (this.currentQuestion().type === 'single') {
       this.selectedOptions = [index];
     } else {
       const idx = this.selectedOptions.indexOf(index);
@@ -46,38 +43,57 @@ export class QuizComponent implements OnInit {
     }
   }
 
-  handleButtonClick(): void {
-    if (!this.showAnswers) {
-      // Проверяем ответ
-      const correctOptions = this.currentQuestion.options
-        .map((opt, i) => (opt.correct ? i : -1))
-        .filter((i) => i !== -1);
+  public checkAnswers(): void {
+    const correctOptions = this.currentQuestion()
+      .options.map((opt, i) => (opt.correct ? i : -1))
+      .filter((i) => i !== -1);
 
-      const isCorrect =
-        this.selectedOptions.length === correctOptions.length &&
-        this.selectedOptions.every((opt) => correctOptions.includes(opt));
+    const isCorrect =
+      this.selectedOptions.length === correctOptions.length &&
+      this.selectedOptions.every((opt) => correctOptions.includes(opt));
 
-      if (isCorrect) this.correctAnswersCount++;
+    if (isCorrect) this._prevCorrectAnwersCount = this.correctAnswersCount++;
 
-      this.showAnswers = true;
+    this.showAnswers = true;
+  }
+
+  public goToQuestion(index: number): void {
+    this.showAnswers = false;
+    this.selectedOptions = [];
+
+    if (index < 0) {
+      return;
+    }
+
+    if (index < this._currentQuestionIndex()) {
+      this.correctAnswersCount = this._prevCorrectAnwersCount;
+    }
+
+    if (index < this.questions().length - 1) {
+      this._currentQuestionIndex.set(index);
     } else {
-      // Переходим к следующему вопросу
-      this.showAnswers = false;
-      this.selectedOptions = [];
-
-      if (this.currentQuestionIndex < this.questions.length - 1) {
-        this.currentQuestionIndex++;
-      } else {
-        this.quizCompleted = true;
-      }
+      this.quizCompleted = true;
     }
   }
 
-  isSelected(index: number): boolean {
+  public next(): void {
+    this.goToQuestion(this._currentQuestionIndex() + 1);
+  }
+
+  public prev(): void {
+    this.goToQuestion(this._currentQuestionIndex() - 1);
+    this.correctAnswersCount = this._prevCorrectAnwersCount;
+  }
+
+  public isSelected(index: number): boolean {
     return this.selectedOptions.includes(index);
   }
 
-  hasSelectedOptions(): boolean {
+  public hasSelectedOptions(): boolean {
     return this.selectedOptions.length > 0;
+  }
+
+  public hasAnswers(): boolean {
+    return this.showAnswers;
   }
 }
