@@ -1,15 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { QuizComponent } from './question/quiz.component';
+import { CategoryMenuComponent } from './category/category-menu.component';
+import { QuizService } from './question/quiz.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [QuizComponent],
+  imports: [CommonModule, QuizComponent, CategoryMenuComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  onQuizCompleted(result: any) {
-    console.log('Результат:', result);
-    alert(`Вы набрали ${result.score} из ${result.totalQuestions} баллов!`);
+  public showCategoryMenu = computed(
+    () => this._quizService.questions().length === 0
+  );
+
+  constructor(private _quizService: QuizService) {}
+
+  public unsetCategory(): void {
+    this._quizService.selectCategory(null);
   }
 }

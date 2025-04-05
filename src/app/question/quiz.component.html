@@ -1,16 +1,16 @@
 <div *ngIf="!quizCompleted" class="quiz-container">
-  <h3>{{ currentQuestion.text }}</h3>
+  <h3>{{ currentQuestion().text }}</h3>
 
   <div class="hint">
     {{
-      currentQuestion.type === "single"
+      currentQuestion().type === "single"
         ? "Выберите один правильный ответ"
         : "Выберете несколько правильных ответов"
     }}
   </div>
 
   <div
-    *ngFor="let option of currentQuestion.options; let i = index"
+    *ngFor="let option of currentQuestion().options; let i = index"
     class="option"
     [class.show-correct]="showAnswers"
     [class.correct]="showAnswers && option.correct"
@@ -28,15 +28,23 @@
     </label>
   </div>
 
-  <button (click)="handleButtonClick()" [disabled]="!hasSelectedOptions()">
-    {{ showAnswers ? "Следующий вопрос" : "Проверить ответ" }}
-  </button>
+  <div class="buttons-toolbar">
+    <button (click)="prev()">Предыдущий вопрос</button>
+
+    <button (click)="checkAnswers()" [disabled]="!hasSelectedOptions()">
+      Проверить ответы
+    </button>
+
+    <button (click)="next()" [disabled]="!hasAnswers()">
+      Следующий вопрос
+    </button>
+  </div>
 </div>
 
 <div *ngIf="quizCompleted" class="results-container">
   <h2>
     Тест завершен! Правильных ответов: {{ correctAnswersCount }} из
-    {{ questions.length }}
+    {{ questions().length }}
   </h2>
   <!-- Здесь можно добавить детальные результаты -->
 </div>
