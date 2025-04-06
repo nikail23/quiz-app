@@ -16,6 +16,10 @@ export class CategoryMenuComponent {
       value: Category.MANAGEMENT,
     },
     {
+      name: 'Педиатрия',
+      value: Category.PEDIATR,
+    },
+    {
       name: 'Все',
       value: Category.ALL,
     },
