@@ -1,15 +1,15 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { Question } from '../model/question.model';
-import { Category, QUIZ_DATA } from '../../assets/data';
+import { CategoryType, QUIZ_DATA } from '../../assets/data';
 
 @Injectable({ providedIn: 'root' })
 export class QuizService {
   private _questions = QUIZ_DATA;
-  private _selectedCategory = signal<Category | null>(null);
+  private _selectedCategory = signal<CategoryType | null>(null);
 
   public questions = computed(() => this._getRandomizedQuestions());
 
-  public selectCategory(category: Category | null): void {
+  public selectCategory(category: CategoryType | null): void {
     this._selectedCategory.set(category);
   }
 
