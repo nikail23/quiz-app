@@ -24,10 +24,17 @@ export class QuizComponent {
     () => this.questions()[this._currentQuestionIndex()]
   );
 
-  public answerHintText = computed(() =>
+  public hint = computed(
+    () =>
+      `Вопрос ${this._currentQuestionIndex() + 1} из ${
+        this.questions().length
+      }. ` + this._answerHintText()
+  );
+
+  private _answerHintText = computed(() =>
     this.currentQuestion().type === 'single'
-      ? 'Выберите один правильный ответ'
-      : 'Выберете несколько правильных ответов'
+      ? 'Выберите один правильный ответ.'
+      : 'Выберете несколько правильных ответов.'
   );
 
   public toggleOption(index: number): void {

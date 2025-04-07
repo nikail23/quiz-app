@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { Category } from '../model/category.model';
 import { MANAGEMENT_DATA } from '../../assets/management';
 import { PEDIATR_DATA } from '../../assets/pediatr';
+import { MEDICINE_DATA } from '../../assets/medicine';
+import { SER_DATA } from '../../assets/set';
 
 @Component({
   selector: 'app-category-menu',
@@ -27,10 +29,20 @@ export class CategoryMenuComponent {
       to: PEDIATR_DATA[PEDIATR_DATA.length - 1].id,
     },
     {
+      name: 'Медицина',
+      value: CategoryType.MEDICINE,
+      from: MEDICINE_DATA[0].id,
+      to: MEDICINE_DATA[MEDICINE_DATA.length - 1].id,
+    },
+    {
+      name: 'СЭР',
+      value: CategoryType.SER,
+      from: SER_DATA[0].id,
+      to: SER_DATA[SER_DATA.length - 1].id,
+    },
+    {
       name: 'Все',
       value: CategoryType.ALL,
-      from: ALL_DATA[0].id,
-      to: ALL_DATA[ALL_DATA.length - 1].id,
     },
   ];
 
