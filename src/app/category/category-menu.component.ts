@@ -7,6 +7,7 @@ import { MANAGEMENT_DATA } from '../../assets/management';
 import { PEDIATR_DATA } from '../../assets/pediatr';
 import { MEDICINE_DATA } from '../../assets/medicine';
 import { SER_DATA } from '../../assets/set';
+import { SURGERY_DATA } from '../../assets/surgery';
 
 @Component({
   selector: 'app-category-menu',
@@ -17,7 +18,7 @@ import { SER_DATA } from '../../assets/set';
 export class CategoryMenuComponent {
   categories: Category[] = [
     {
-      name: 'Менеджемент',
+      name: 'Общественное здоровье и здравоохранение',
       value: CategoryType.MANAGEMENT,
       from: MANAGEMENT_DATA[0].id,
       to: MANAGEMENT_DATA[MANAGEMENT_DATA.length - 1].id,
@@ -29,13 +30,19 @@ export class CategoryMenuComponent {
       to: PEDIATR_DATA[PEDIATR_DATA.length - 1].id,
     },
     {
-      name: 'Медицина',
+      name: 'Пропедевтика внутренних болезней',
       value: CategoryType.MEDICINE,
       from: MEDICINE_DATA[0].id,
       to: MEDICINE_DATA[MEDICINE_DATA.length - 1].id,
     },
     {
-      name: 'СЭР',
+      name: 'Хирургия',
+      value: CategoryType.SURGERY,
+      from: SURGERY_DATA[0].id,
+      to: SURGERY_DATA[SURGERY_DATA.length - 1].id,
+    },
+    {
+      name: 'Санитарно-эпидемиологический режим',
       value: CategoryType.SER,
       from: SER_DATA[0].id,
       to: SER_DATA[SER_DATA.length - 1].id,
