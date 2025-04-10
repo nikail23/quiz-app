@@ -24,7 +24,10 @@ const UNIQUE_DATA = {
   [CategoryType.SER]: SER_DATA,
 };
 
-const ALL_DATA = Object.values(UNIQUE_DATA);
+const ALL_DATA = Object.values(UNIQUE_DATA).reduce(
+  (prev, all) => [...all, ...prev],
+  []
+);
 
 export const QUIZ_DATA = {
   ...UNIQUE_DATA,
