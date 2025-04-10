@@ -1,32 +1,32 @@
-import { Question } from '../app/model/question.model';
 import { MANAGEMENT_DATA } from './management';
 import { MEDICINE_DATA } from './medicine';
 import { PEDIATR_DATA } from './pediatr';
+import { BIOETHICA_DATA } from './bioethica';
 import { SER_DATA } from './set';
 import { SURGERY_DATA } from './surgery';
-
-export const ALL_DATA: Question[] = [
-  ...MANAGEMENT_DATA,
-  ...PEDIATR_DATA,
-  ...MEDICINE_DATA,
-  ...SURGERY_DATA,
-  ...SER_DATA,
-];
 
 export enum CategoryType {
   MANAGEMENT = 'MANAGEMENT',
   PEDIATR = 'PEDIATR',
   MEDICINE = 'MEDICINE',
+  BIOETHICA = 'BIOETHICA',
   SURGERY = 'SURGERY',
   SER = 'SER',
   ALL = 'ALL',
 }
 
-export const QUIZ_DATA = {
+const UNIQUE_DATA = {
   [CategoryType.MANAGEMENT]: MANAGEMENT_DATA,
   [CategoryType.PEDIATR]: PEDIATR_DATA,
   [CategoryType.MEDICINE]: MEDICINE_DATA,
+  [CategoryType.BIOETHICA]: BIOETHICA_DATA,
   [CategoryType.SURGERY]: SURGERY_DATA,
   [CategoryType.SER]: SER_DATA,
+};
+
+const ALL_DATA = Object.values(UNIQUE_DATA);
+
+export const QUIZ_DATA = {
+  ...UNIQUE_DATA,
   [CategoryType.ALL]: ALL_DATA,
 };

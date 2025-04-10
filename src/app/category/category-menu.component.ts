@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { QuizService } from '../question/quiz.service';
-import { ALL_DATA, CategoryType } from '../../assets/data';
+import { CategoryType } from '../../assets/data';
 import { CommonModule } from '@angular/common';
 import { Category } from '../model/category.model';
 import { MANAGEMENT_DATA } from '../../assets/management';
@@ -8,6 +8,7 @@ import { PEDIATR_DATA } from '../../assets/pediatr';
 import { MEDICINE_DATA } from '../../assets/medicine';
 import { SER_DATA } from '../../assets/set';
 import { SURGERY_DATA } from '../../assets/surgery';
+import { BIOETHICA_DATA } from '../../assets/bioethica';
 
 @Component({
   selector: 'app-category-menu',
@@ -34,6 +35,12 @@ export class CategoryMenuComponent {
       value: CategoryType.MEDICINE,
       from: MEDICINE_DATA[0].id,
       to: MEDICINE_DATA[MEDICINE_DATA.length - 1].id,
+    },
+    {
+      name: 'Биоэтика',
+      value: CategoryType.BIOETHICA,
+      from: BIOETHICA_DATA[0].id,
+      to: BIOETHICA_DATA[BIOETHICA_DATA.length - 1].id,
     },
     {
       name: 'Хирургия',
