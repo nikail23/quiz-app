@@ -4,13 +4,17 @@ import { PEDIATR_DATA } from './pediatr';
 import { BIOETHICA_DATA } from './bioethica';
 import { SER_DATA } from './set';
 import { SURGERY_DATA } from './surgery';
+import { IDEOLOGY_DATA } from './ideology';
+import { URGENT_DATA } from './urgent';
 
 export enum CategoryType {
   MANAGEMENT = 'MANAGEMENT',
   PEDIATR = 'PEDIATR',
   MEDICINE = 'MEDICINE',
-  BIOETHICA = 'BIOETHICA',
   SURGERY = 'SURGERY',
+  BIOETHICA = 'BIOETHICA',
+  IDEOLOGY = 'IDEOLOGY',
+  URGENT = 'URGENT',
   SER = 'SER',
   ALL = 'ALL',
 }
@@ -19,8 +23,10 @@ const UNIQUE_DATA = {
   [CategoryType.MANAGEMENT]: MANAGEMENT_DATA,
   [CategoryType.PEDIATR]: PEDIATR_DATA,
   [CategoryType.MEDICINE]: MEDICINE_DATA,
-  [CategoryType.BIOETHICA]: BIOETHICA_DATA,
   [CategoryType.SURGERY]: SURGERY_DATA,
+  [CategoryType.BIOETHICA]: BIOETHICA_DATA,
+  [CategoryType.IDEOLOGY]: IDEOLOGY_DATA,
+  [CategoryType.URGENT]: URGENT_DATA,
   [CategoryType.SER]: SER_DATA,
 };
 

@@ -9,6 +9,8 @@ import { MEDICINE_DATA } from '../../assets/medicine';
 import { SER_DATA } from '../../assets/set';
 import { SURGERY_DATA } from '../../assets/surgery';
 import { BIOETHICA_DATA } from '../../assets/bioethica';
+import { IDEOLOGY_DATA } from '../../assets/ideology';
+import { URGENT_DATA } from '../../assets/urgent';
 
 @Component({
   selector: 'app-category-menu',
@@ -53,6 +55,18 @@ export class CategoryMenuComponent {
       value: CategoryType.SER,
       from: SER_DATA[0].id,
       to: SER_DATA[SER_DATA.length - 1].id,
+    },
+    {
+      name: 'Идеология, право, антикорупционное законодательство, охрана труда',
+      value: CategoryType.IDEOLOGY,
+      from: IDEOLOGY_DATA[0].id,
+      to: IDEOLOGY_DATA[IDEOLOGY_DATA.length - 1].id,
+    },
+    {
+      name: 'Неотложенная медицинская помощь',
+      value: CategoryType.URGENT,
+      from: URGENT_DATA[0].id,
+      to: URGENT_DATA[URGENT_DATA.length - 1].id,
     },
     {
       name: 'Все',
