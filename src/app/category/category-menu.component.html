@@ -6,11 +6,9 @@
       (click)="selectCategory(category.value)"
       class="category-btn"
     >
-      {{ category.name }}
-      @if(category.from !== undefined && category.to !== undefined) { ({{
-        category.from
-      }}
-      - {{ category.to }}) }
+      {{ category.name }} @if(category.count !== undefined) { ({{
+        category.count
+      }}) }
     </button>
   </div>
 </div>

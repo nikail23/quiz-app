@@ -11,6 +11,7 @@ import { SURGERY_DATA } from '../../assets/surgery';
 import { BIOETHICA_DATA } from '../../assets/bioethica';
 import { IDEOLOGY_DATA } from '../../assets/ideology';
 import { URGENT_DATA } from '../../assets/urgent';
+import { EDUCATION_DATA } from '../../assets/education';
 
 @Component({
   selector: 'app-category-menu',
@@ -23,50 +24,47 @@ export class CategoryMenuComponent {
     {
       name: 'Общественное здоровье и здравоохранение',
       value: CategoryType.MANAGEMENT,
-      from: MANAGEMENT_DATA[0].id,
-      to: MANAGEMENT_DATA[MANAGEMENT_DATA.length - 1].id,
+      count: MANAGEMENT_DATA.length,
     },
     {
       name: 'Педиатрия',
       value: CategoryType.PEDIATR,
-      from: PEDIATR_DATA[0].id,
-      to: PEDIATR_DATA[PEDIATR_DATA.length - 1].id,
+      count: PEDIATR_DATA.length,
     },
     {
       name: 'Пропедевтика внутренних болезней',
       value: CategoryType.MEDICINE,
-      from: MEDICINE_DATA[0].id,
-      to: MEDICINE_DATA[MEDICINE_DATA.length - 1].id,
+      count: MEDICINE_DATA.length,
+    },
+    {
+      name: 'Психология и педагогика',
+      value: CategoryType.EDUCATION,
+      count: EDUCATION_DATA.length,
     },
     {
       name: 'Биоэтика',
       value: CategoryType.BIOETHICA,
-      from: BIOETHICA_DATA[0].id,
-      to: BIOETHICA_DATA[BIOETHICA_DATA.length - 1].id,
-    },
-    {
-      name: 'Хирургия',
-      value: CategoryType.SURGERY,
-      from: SURGERY_DATA[0].id,
-      to: SURGERY_DATA[SURGERY_DATA.length - 1].id,
-    },
-    {
-      name: 'Санитарно-эпидемиологический режим',
-      value: CategoryType.SER,
-      from: SER_DATA[0].id,
-      to: SER_DATA[SER_DATA.length - 1].id,
+      count: BIOETHICA_DATA.length,
     },
     {
       name: 'Идеология, право, антикорупционное законодательство, охрана труда',
       value: CategoryType.IDEOLOGY,
-      from: IDEOLOGY_DATA[0].id,
-      to: IDEOLOGY_DATA[IDEOLOGY_DATA.length - 1].id,
+      count: IDEOLOGY_DATA.length,
     },
     {
       name: 'Неотложенная медицинская помощь',
       value: CategoryType.URGENT,
-      from: URGENT_DATA[0].id,
-      to: URGENT_DATA[URGENT_DATA.length - 1].id,
+      count: URGENT_DATA.length,
+    },
+    {
+      name: 'Хирургия',
+      value: CategoryType.SURGERY,
+      count: SURGERY_DATA.length,
+    },
+    {
+      name: 'Санитарно-эпидемиологический режим',
+      value: CategoryType.SER,
+      count: SER_DATA.length,
     },
     {
       name: 'Все',
