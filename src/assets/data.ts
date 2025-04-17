@@ -7,8 +7,10 @@ import { SURGERY_DATA } from './surgery';
 import { IDEOLOGY_DATA } from './ideology';
 import { URGENT_DATA } from './urgent';
 import { EDUCATION_DATA } from './education';
+import { GINECOLOGY_DATA } from './ginecology';
 
 export enum CategoryType {
+  GINECOLOGY = 'GINECOLOGY',
   MANAGEMENT = 'MANAGEMENT',
   PEDIATR = 'PEDIATR',
   MEDICINE = 'MEDICINE',
@@ -22,6 +24,7 @@ export enum CategoryType {
 }
 
 const UNIQUE_DATA = {
+  [CategoryType.GINECOLOGY]: GINECOLOGY_DATA,
   [CategoryType.MANAGEMENT]: MANAGEMENT_DATA,
   [CategoryType.PEDIATR]: PEDIATR_DATA,
   [CategoryType.MEDICINE]: MEDICINE_DATA,

@@ -12,6 +12,7 @@ import { BIOETHICA_DATA } from '../../assets/bioethica';
 import { IDEOLOGY_DATA } from '../../assets/ideology';
 import { URGENT_DATA } from '../../assets/urgent';
 import { EDUCATION_DATA } from '../../assets/education';
+import { GINECOLOGY_DATA } from '../../assets/ginecology';
 
 @Component({
   selector: 'app-category-menu',
@@ -21,6 +22,11 @@ import { EDUCATION_DATA } from '../../assets/education';
 })
 export class CategoryMenuComponent {
   categories: Category[] = [
+    {
+      name: 'Гинекология и акушерство',
+      value: CategoryType.GINECOLOGY,
+      count: GINECOLOGY_DATA.length,
+    },
     {
       name: 'Общественное здоровье и здравоохранение',
       value: CategoryType.MANAGEMENT,
